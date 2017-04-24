@@ -1,10 +1,10 @@
 {
   "name": "deep-seal",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Performs Object.seal recursively on the functions and objects",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "deep-freeze",
