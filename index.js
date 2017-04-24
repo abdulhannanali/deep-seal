@@ -15,9 +15,10 @@ const FUNCTION_PROPERTY_EXCEPTIONS = ['arguments', 'callee', 'caller'];
  * references
  * 
  * @param {Object|Function} o Value to be sealed deeply
+ * @param {Object} options 
  * @return {Object|Function} Sealed value
  */
-function deepSeal (o) {
+function deepSeal (o, options) {
   const typeO = typeof o;
   Object.seal(o);
 
@@ -45,12 +46,10 @@ function deepSeal (o) {
  * 
  * @return {Boolean} true if it's an exception
  */
-function isException(prop, type) {
-  if (type === 'function') {
-    return FUNCTION_PROPERTY_EXCEPTIONS.indexOf(prop) !== -1;
-  }
-
-  return true;
-}
+const isException = ((prop, type) => (
+  type === 'function'
+  ? FUNCTION_PROPERTY_EXCEPTIONS.indexOf(prop) !== -1
+  : false
+));
 
 module.exports = deepSeal;

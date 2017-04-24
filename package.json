@@ -1,10 +1,12 @@
 {
   "name": "deep-seal",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Performs Object.seal recursively on the functions and objects",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prepublish": "npm build",
+    "build": "babel index.js -d build/"
   },
   "keywords": [
     "deep-freeze",
@@ -21,6 +23,9 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
     "jest": "^19.0.2"
   }
 }
