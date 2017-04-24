@@ -1,0 +1,19 @@
+{
+  "name": "deep-seal",
+  "version": "1.0.0",
+  "description": "Performs Object.seal recursively on the functions and objects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "deep-freeze",
+    "deep-seal",
+    "Object.seal",
+    "seal",
+    "immutability",
+    "immutable"
+  ],
+  "author": "Hannan Ali <abdulhannanali@outlook.com>",
+  "license": "ISC"
+}
