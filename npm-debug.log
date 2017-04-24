@@ -1,0 +1,120 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/hannan/.nvm/versions/node/v7.4.0/bin/node',
+1 verbose cli   '/home/hannan/.nvm/versions/node/v7.4.0/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@4.0.5
+3 info using node@v7.4.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/home/hannan/Programming/deep-seal',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/hannan/.npm/deep-seal/2.0.1/package.tgz not in flight; packing
+9 verbose correctMkdir /home/hannan/.npm correctMkdir not in flight; initializing
+10 info lifecycle deep-seal@2.0.1~prepublish: deep-seal@2.0.1
+11 silly lifecycle deep-seal@2.0.1~prepublish: no script for prepublish, continuing
+12 info lifecycle deep-seal@2.0.1~prepare: deep-seal@2.0.1
+13 silly lifecycle deep-seal@2.0.1~prepare: no script for prepare, continuing
+14 verbose tar pack [ '/home/hannan/.npm/deep-seal/2.0.1/package.tgz',
+14 verbose tar pack   '/home/hannan/Programming/deep-seal' ]
+15 verbose tarball /home/hannan/.npm/deep-seal/2.0.1/package.tgz
+16 verbose folder /home/hannan/Programming/deep-seal
+17 verbose addLocalTarball adding from inside cache /home/hannan/.npm/deep-seal/2.0.1/package.tgz
+18 verbose correctMkdir /home/hannan/.npm correctMkdir not in flight; initializing
+19 silly cache afterAdd deep-seal@2.0.1
+20 verbose afterAdd /home/hannan/.npm/deep-seal/2.0.1/package/package.json not in flight; writing
+21 verbose correctMkdir /home/hannan/.npm correctMkdir not in flight; initializing
+22 verbose afterAdd /home/hannan/.npm/deep-seal/2.0.1/package/package.json written
+23 silly publish { name: 'deep-seal',
+23 silly publish   version: '2.0.1',
+23 silly publish   description: 'Performs Object.seal recursively on the functions and objects',
+23 silly publish   main: 'index.js',
+23 silly publish   scripts: { test: 'jest' },
+23 silly publish   keywords:
+23 silly publish    [ 'deep-freeze',
+23 silly publish      'deep-seal',
+23 silly publish      'Object.seal',
+23 silly publish      'seal',
+23 silly publish      'immutability',
+23 silly publish      'immutable' ],
+23 silly publish   author: { name: 'Hannan Ali', email: 'abdulhannanali@outlook.com' },
+23 silly publish   repository:
+23 silly publish    { type: 'git',
+23 silly publish      url: 'git+https://github.com/abdulhannanali/deep-seal.git' },
+23 silly publish   license: 'MIT',
+23 silly publish   devDependencies: { jest: '^19.0.2' },
+23 silly publish   readme: '# deep-seal\n\n![TravisCI Build Status](https://api.travis-ci.org/abdulhannanali/deep-seal.svg?branch=master)\n\nRecursively calls Object.seal on Functions and Objects. Based on the substack\'s\n[deep-freeze](https://github.com/substack/deep-freeze) module.\n\n## Installation\n\n```\nnpm install deep-seal`\n```\n\nOr if you are a yarn user like me\n\n```\nyarn add deep-seal\n```\n\n## Example usage\n\n```js\nconst deepSeal = require(\'deep-seal\');\nconst x = {a: \'hello\', b: \'world\'}\n\ndelete x.a\nconsole.log(x.a) // hello\n\nx.c = \'afkslj\'\nconsole.log(x.c) // undefined\n\n// Does not all the extension of object and \n// does not let you delete the properties already present\n```\n\n## methods\n\n```js\nconst deepSeal = require(\'deep-seal\'); \n```\n\n### deepSeal(o)\n\nCalls `Object.seal` recursively on all unsealed properties that are functions or objects.\n\n#### Parameters\n- o (function or object, Object.seal is going to be applied on)\n\n#### Returns \n- o (same object but deeply sealed :smile: )\n\n\n\n### LICENSE\nLicense under MIT LICENSE. See [LICENSE](LICENSE) for more details.',
+23 silly publish   readmeFilename: 'README.md',
+23 silly publish   gitHead: '9bbe1cea690d1eed7cfa859a8c0dfbb1486e759f',
+23 silly publish   bugs: { url: 'https://github.com/abdulhannanali/deep-seal/issues' },
+23 silly publish   homepage: 'https://github.com/abdulhannanali/deep-seal#readme',
+23 silly publish   _id: 'deep-seal@2.0.1',
+23 silly publish   _shasum: '7a0e323f8dbedc60619d2c3f90efc54051a351be',
+23 silly publish   _from: '.' }
+24 info lifecycle deep-seal@2.0.1~prepublishOnly: deep-seal@2.0.1
+25 silly lifecycle deep-seal@2.0.1~prepublishOnly: no script for prepublishOnly, continuing
+26 verbose getPublishConfig undefined
+27 silly mapToRegistry name deep-seal
+28 silly mapToRegistry using default registry
+29 silly mapToRegistry registry https://registry.npmjs.org/
+30 silly mapToRegistry data Result {
+30 silly mapToRegistry   raw: 'deep-seal',
+30 silly mapToRegistry   scope: null,
+30 silly mapToRegistry   escapedName: 'deep-seal',
+30 silly mapToRegistry   name: 'deep-seal',
+30 silly mapToRegistry   rawSpec: '',
+30 silly mapToRegistry   spec: 'latest',
+30 silly mapToRegistry   type: 'tag' }
+31 silly mapToRegistry uri https://registry.npmjs.org/deep-seal
+32 verbose publish registryBase https://registry.npmjs.org/
+33 silly publish uploading /home/hannan/.npm/deep-seal/2.0.1/package.tgz
+34 verbose request uri https://registry.npmjs.org/deep-seal
+35 verbose request sending authorization for write operation
+36 info attempt registry request try #1 at 12:31:28 AM
+37 verbose request using bearer token for auth
+38 verbose request id c07d8af7bf02d858
+39 http request PUT https://registry.npmjs.org/deep-seal
+40 http 403 https://registry.npmjs.org/deep-seal
+41 verbose headers { 'content-type': 'application/json',
+41 verbose headers   'cache-control': 'max-age=300',
+41 verbose headers   'content-length': '95',
+41 verbose headers   'accept-ranges': 'bytes',
+41 verbose headers   date: 'Mon, 24 Apr 2017 19:31:32 GMT',
+41 verbose headers   via: '1.1 varnish',
+41 verbose headers   connection: 'keep-alive',
+41 verbose headers   'x-served-by': 'cache-hhn1520-HHN',
+41 verbose headers   'x-cache': 'MISS',
+41 verbose headers   'x-cache-hits': '0',
+41 verbose headers   'x-timer': 'S1493062291.991612,VS0,VE1017',
+41 verbose headers   vary: 'Accept-Encoding' }
+42 verbose request invalidating /home/hannan/.npm/registry.npmjs.org/deep-seal on PUT
+43 error publish Failed PUT 403
+44 verbose stack Error: "You cannot publish over the previously published version 2.0.1." : deep-seal
+44 verbose stack     at makeError (/home/hannan/.nvm/versions/node/v7.4.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+44 verbose stack     at CachingRegistryClient.<anonymous> (/home/hannan/.nvm/versions/node/v7.4.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+44 verbose stack     at Request._callback (/home/hannan/.nvm/versions/node/v7.4.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+44 verbose stack     at Request.self.callback (/home/hannan/.nvm/versions/node/v7.4.0/lib/node_modules/npm/node_modules/request/request.js:186:22)
+44 verbose stack     at emitTwo (events.js:106:13)
+44 verbose stack     at Request.emit (events.js:191:7)
+44 verbose stack     at Request.<anonymous> (/home/hannan/.nvm/versions/node/v7.4.0/lib/node_modules/npm/node_modules/request/request.js:1081:10)
+44 verbose stack     at emitOne (events.js:96:13)
+44 verbose stack     at Request.emit (events.js:188:7)
+44 verbose stack     at IncomingMessage.<anonymous> (/home/hannan/.nvm/versions/node/v7.4.0/lib/node_modules/npm/node_modules/request/request.js:1001:12)
+45 verbose statusCode 403
+46 verbose pkgid deep-seal
+47 verbose cwd /home/hannan/Programming/deep-seal
+48 error Linux 4.4.0-72-generic
+49 error argv "/home/hannan/.nvm/versions/node/v7.4.0/bin/node" "/home/hannan/.nvm/versions/node/v7.4.0/bin/npm" "publish"
+50 error node v7.4.0
+51 error npm  v4.0.5
+52 error code E403
+53 error "You cannot publish over the previously published version 2.0.1." : deep-seal
+54 error If you need help, you may report this error at:
+54 error     <https://github.com/npm/npm/issues>
+55 verbose exit [ 1, true ]
