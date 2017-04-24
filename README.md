@@ -41,7 +41,7 @@ const deepSeal = require('deep-seal');
 
 ### deepSeal(o)
 
-Calls `Object.seal` recursively on all unfrozen properties that are functions or objects.
+Calls `Object.seal` recursively on all unsealed properties that are functions or objects.
 
 #### Parameters
 - o (function or object, Object.seal is going to be applied on)
