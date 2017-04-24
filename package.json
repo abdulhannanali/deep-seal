@@ -1,6 +1,6 @@
 {
   "name": "deep-seal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Performs Object.seal recursively on the functions and objects",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,9 @@
     "immutable"
   ],
   "author": "Hannan Ali <abdulhannanali@outlook.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdulhannanali/deep-seal.git"
+  },
   "license": "ISC"
 }
