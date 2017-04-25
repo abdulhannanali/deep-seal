@@ -8,10 +8,12 @@
  * and the WeakMap idea is borrowed from Douglas Crockford's cycle.js implementation in JSON-js
  * 
  * Quite cool stuff!
+ * 
+ * @flow
  */
 'use strict';
 
-function isCyclic (obj) {
+function isCyclic (obj: Object): boolean {
   const seenObjects = new WeakMap();
   
   function detect (obj) {

@@ -4,7 +4,10 @@
  * Based on the deep-freeze module provided by the substack.
  * Seals the object using Object.seal recursively, battle tested
  * code to include within your repository.
+ * 
+ * @flow
  */
+'use strict';
 
 // Prevents Error in Strict Mode
 const FUNCTION_PROPERTY_EXCEPTIONS = ['arguments', 'callee', 'caller'];
@@ -17,25 +20,28 @@ const FUNCTION_PROPERTY_EXCEPTIONS = ['arguments', 'callee', 'caller'];
  * @param {Boolean} trackCycles if true, cycles are kept track of and error is thrown when one is found 
  * @return {Object|Function} Sealed value
  */
-function deepSeal (o, trackCycles = false) {
+function deepSeal (o: Object, trackCycles:boolean = false): Object {
   const typeO = typeof o;
+  Object.seal(o);
 
-  if (!!trackCycles) {
-    checkCycles(o);
+  if (typeO === 'object' || typeO === 'function') {
+    if (!!trackCycles) {
+      checkCycles(o);
+    }
+
+    Object.getOwnPropertyNames(o).forEach(name => {
+      const prop = o[name];
+
+      if (o.hasOwnProperty(name)
+      && prop !== null
+      && typeO === 'object' || typeO === 'function'
+      && !isException(prop, typeO)
+      && !Object.isSealed(prop)) {
+        deepSeal(prop);
+      }
+    });
   }
 
-  Object.seal(o);
-  Object.getOwnPropertyNames(o).forEach(name => {
-    const prop = o[name];
-
-    if (o.hasOwnProperty(name)
-    && prop !== null
-    && typeO === 'object' || typeO === 'function'
-    && !isException(prop, typeO)
-    && !Object.isSealed(prop)) {
-      deepSeal(prop);
-    }
-  });
 
   return o;
 }
@@ -49,7 +55,7 @@ function deepSeal (o, trackCycles = false) {
  * 
  * @return {Boolean} true if it's an exception
  */
-const isException = ((prop, type) => (
+const isException = ((prop: string, type: string): boolean => (
   type === 'function'
   ? FUNCTION_PROPERTY_EXCEPTIONS.indexOf(prop) !== -1
   : false
@@ -58,7 +64,7 @@ const isException = ((prop, type) => (
 /**
  * checks for circular reference in object
  */
-function checkCycles(object) {
+function checkCycles(object: Object|Function): void {
   // Requiring in the function to keep the dependency graph small initially
   const isCyclic = require('./isCyclic');
   const cyclic = isCyclic(object);
