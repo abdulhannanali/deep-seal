@@ -8,14 +8,10 @@ test('deep seal seals object recursively', function () {
     expect(Object.isSealed(obj)).toBe(true);
     expect(Object.isSealed(obj2)).toBe(true);
 
-    try {
-      obj.a = 'Hello World';
-    } catch (error) {
-      expect(error instanceof TypeError).toBeTruthy();      
-    }
 
-    delete obj.x
-    delete obj2.y
+    expect(() => obj.a = "Hello World").toThrow(TypeError);
+    expect(() => delete obj.x).toThrow(TypeError);
+    expect(() => delete obj2.y).toThrow(TypeError);
 
     expect(obj.a).toBeUndefined();
     expect(obj.tee).toBeUndefined();
@@ -25,10 +21,10 @@ test('deep seal seals object recursively', function () {
 });
 
 test('deep seal functions in strict mode', function () {
+    'use strict';
+    
     const f = function x () {};
-    
     deepSeal(f);
-    
     expect(Object.isSealed(f)).toBe(true);
 });
 
@@ -36,13 +32,5 @@ test('deep seal functions in strict mode', function () {
 test('deep seal cyclic objects throws error', () => {
     const x = {};
     x.x = x;
-
-    try {
-      deepSeal(x, {
-          cycleCheck: true
-      });
-    } catch (error) {
-      expect(error instanceof TypeError).toBe(true);
-      expect(error.message).toMatch(/Cyclic references will result in an infinite loop/i);
-    }
+    expect(() => deepSeal(x, true)).toThrow(TypeError);
 });
