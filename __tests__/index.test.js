@@ -1,22 +1,19 @@
-const deepSeal = require('../index');
+const deepSeal = require('../src/index');
 
-
-test('deep seal seals object recursively', () => {
+test('deep seal seals object recursively', function () {
     const obj = { x: 2113 };
     const obj2 = {y: obj, a: 321 }
-    const f = function x () {};
-    f.prototype.ok = 'google';
-
 
     deepSeal(obj2);
-    deepSeal(f);
-
     expect(Object.isSealed(obj)).toBe(true);
     expect(Object.isSealed(obj2)).toBe(true);
 
-    obj.a = 'Hello World'
-    obj.tee = 'shirt'
-    
+    try {
+      obj.a = 'Hello World';
+    } catch (error) {
+      expect(error instanceof TypeError).toBeTruthy();      
+    }
+
     delete obj.x
     delete obj2.y
 
@@ -25,24 +22,27 @@ test('deep seal seals object recursively', () => {
     
     expect(obj.x).toBe(2113)
     expect(obj2.y).toEqual(obj);
-
-
-    f.prototype.yo = 'seal'
-    f.a = 'no'
-
-    delete f.prototype.ok
-
-    expect(f.prototype.yo).toBeUndefined();
-    expect(f.a).toBeUndefined();
-    expect(f.prototype.ok).toEqual('google');
 });
 
-test('deep seal functions in strict mode', () => {
-    'use strict';
-
+test('deep seal functions in strict mode', function () {
     const f = function x () {};
     
     deepSeal(f);
     
     expect(Object.isSealed(f)).toBe(true);
+});
+
+
+test('deep seal cyclic objects throws error', () => {
+    const x = {};
+    x.x = x;
+
+    try {
+      deepSeal(x, {
+          cycleCheck: true
+      });
+    } catch (error) {
+      expect(error instanceof TypeError).toBe(true);
+      expect(error.message).toMatch(/Cyclic references will result in an infinite loop/i);
+    }
 });

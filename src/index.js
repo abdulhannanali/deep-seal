@@ -5,7 +5,6 @@
  * Seals the object using Object.seal recursively, battle tested
  * code to include within your repository.
  */
-'use strict';
 
 // Prevents Error in Strict Mode
 const FUNCTION_PROPERTY_EXCEPTIONS = ['arguments', 'callee', 'caller'];
@@ -15,13 +14,17 @@ const FUNCTION_PROPERTY_EXCEPTIONS = ['arguments', 'callee', 'caller'];
  * references
  * 
  * @param {Object|Function} o Value to be sealed deeply
- * @param {Object} options 
+ * @param {Boolean} trackCycles if true, cycles are kept track of and error is thrown when one is found 
  * @return {Object|Function} Sealed value
  */
-function deepSeal (o, options) {
+function deepSeal (o, trackCycles = false) {
   const typeO = typeof o;
-  Object.seal(o);
 
+  if (!!trackCycles) {
+    checkCycles(o);
+  }
+
+  Object.seal(o);
   Object.getOwnPropertyNames(o).forEach(name => {
     const prop = o[name];
 
@@ -51,5 +54,18 @@ const isException = ((prop, type) => (
   ? FUNCTION_PROPERTY_EXCEPTIONS.indexOf(prop) !== -1
   : false
 ));
+
+/**
+ * checks for circular reference in object
+ */
+function checkCycles(object) {
+  // Requiring in the function to keep the dependency graph small initially
+  const isCyclic = require('./isCyclic');
+  const cyclic = isCyclic(object);
+
+  if (cyclic) {
+    throw new TypeError('Cyclic references will result in an infinite loop, omit them');
+  }
+}
 
 module.exports = deepSeal;
